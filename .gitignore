@@ -1,0 +1,21 @@
+# --- Arduino Build Artifacts ---
+# Ignore compiled binaries and object files
+*.o
+*.a
+*.so
+*.hex
+*.elf
+*.bin
+
+# --- IDE Specific Temporary Directories ---
+# Arduino IDE 2.x / CLI build directories
+build/
+bin/
+
+# Visual Studio / Visual Micro temporary folders
+_vm/
+AppBld/
+
+# --- Operating System Files ---
+.DS_Store
+Thumbs.db
