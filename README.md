@@ -23,7 +23,7 @@ Como medida de seguridad para la conversion de los grados a pulsos se establecio
 <aside>
 💡
 
-**0 grados = 150 ms
+**0 grados = 150 ms,
 180 grados = 450 ms**
 
 </aside>
