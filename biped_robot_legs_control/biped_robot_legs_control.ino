@@ -8,14 +8,15 @@
     Asi representando que va desde el pie hasta la cadera (de abajo hacia arriba)
 
     Mapeo de los canales
-    ---------------------------------------
-    servoPieDer     | Canal 0 | Columna x |
-    servoPieIzq     | Canal 1 | Columna x |
-    servoRodillaDer | Canal 2 | Columna x |
-    servoRodillaIzq | Canal 3 | Columna x |
-    servoCaderaDer  | Canal 4 | Columna x |
-    servoCaderaIzq  | Canal 5 | Columna x |
-    ---------------------------------------
+  -------------------------------------|
+    Pie derecho:        [0]| Columna 4 |
+    Rodilla derecha:    [2]| Columna 2 |
+    Cadera derecha:     [4]| Columna 5 |
+  -------------------------|-----------|
+    Pie izquierda:      [1]| Columna 3 |
+    Rodilla izquierda:  [3]| Columna 1 |
+    Cadera izquierda:   [5]| Columna 6 |
+  -------------------------------------|
 */
 
 #include <Adafruit_PWMServoDriver.h>
