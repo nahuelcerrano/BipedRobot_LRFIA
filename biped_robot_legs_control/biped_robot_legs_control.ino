@@ -1,5 +1,5 @@
 /*
-    EquipoDinamita 15/08/2026
+    EquipoDinamita 29/08/2026
     El conceso de la definiciones de los pines será:
     Los servos de la derecha tendrá los canales pares
     Los servos de la izquierda tendrá los canales impares
@@ -55,12 +55,20 @@ const int duracionPausa = 1000;  // ms de pausa (reemplaza al delay(1000))
 
 void setup()
 {
+  Serial.begin(9600);
+
   servos.begin();
   servos.setPWMFreq(SERVO_FREQ);
 
   for (int i = 0; i < 6; i++)
   {
-      servos.setPWM(i, 0, gradosAPulsos(90));
+    servos.setPWM(i, 0, 4096);
+    Serial.print("Liberando servo en canal: ");
+    Serial.println(i);
+    delay(3000);
+    servos.setPWM(i, 0, 0);
+    Serial.println("frenado: ");
+    Serial.println(i);
   }
 
   iniciarMovimiento(servoPieIzq, servoPieDer, 90, 175);
@@ -69,6 +77,7 @@ void setup()
 void loop()
 {
   actualizarSecuencia();
+  
 }
 
 int gradosAPulsos(int grados)
@@ -103,12 +112,18 @@ bool actualizarMovimiento()
   return false;
 }
 
+void liberarServo(int canal)
+{
+  servos.setPWM(canal, 0, 4096);
+}
+
 void actualizarSecuencia()
 {
   switch (estadoActual)
   {
     case PIE_IDA:
       if (actualizarMovimiento()) {
+        Serial.print("Moviendo Pies");
         inicioPausa = millis();
         estadoActual = PIE_PAUSA1;
       }
@@ -130,7 +145,10 @@ void actualizarSecuencia()
 
     case PIE_PAUSA2:
       if (millis() - inicioPausa >= duracionPausa) {
+        liberarServo(servoPieDer);
+        liberarServo(servoPieIzq);
         iniciarMovimiento(servoRodillaIzq, servoRodillaDer, 90, 5);
+        Serial.print("Moviendo Rodillas");
         estadoActual = RODILLA_IDA;
       }
       break;
@@ -157,7 +175,11 @@ void actualizarSecuencia()
       break;
 
     case RODILLA_PAUSA2:
-      if (millis() - inicioPausa >= duracionPausa) {
+      if (millis() - inicioPausa >= duracionPausa)
+      {
+        liberarServo(servoRodillaDer);
+        liberarServo(servoRodillaIzq);
+        Serial.print("Moviendo Caderas");
         iniciarMovimiento(servoCaderaIzq, servoCaderaDer, 90, 175);
         estadoActual = CADERA_IDA;
       }
@@ -187,6 +209,8 @@ void actualizarSecuencia()
     case CADERA_PAUSA2:
       if (millis() - inicioPausa >= duracionPausa) {
         // Reinicia el ciclo completo
+        liberarServo(servoCaderaDer);
+        liberarServo(servoCaderaIzq);
         iniciarMovimiento(servoPieIzq, servoPieDer, 90, 175);
         estadoActual = PIE_IDA;
       }
