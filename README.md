@@ -11,12 +11,12 @@ Asi representando que va desde el pie hasta la cadera (de abajo hacia arriba)
 
 | ***Servos*** | ***Canales*** | ***Columnas*** |
 | --- | --- | --- |
-| servoPieDer | Canal 0 | Columna x |
-| servoPieIzq | Canal 1 | Columna x |
-| servoRodillaDer | Canal 2 | Columna x |
-| servoRodillaIzq | Canal 3 | Columna x |
-| servoCaderaDer | Canal 4 | Columna x |
-| servoCaderaIzq  | Canal 5 | Columna x |
+| servoPieDer | Canal 0 | Columna 4 |
+| servoPieIzq | Canal 2 | Columna 2 |
+| servoRodillaDer | Canal 4 | Columna 5 |
+| servoRodillaIzq | Canal 1 | Columna 3 |
+| servoCaderaDer | Canal 3 | Columna 1 |
+| servoCaderaIzq  | Canal 5 | Columna 6 |
 
 Como medida de seguridad para la conversion de los grados a pulsos se establecio
 
